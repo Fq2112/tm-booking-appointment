@@ -22,6 +22,7 @@ class CreateCustomersTable extends Migration
             $table->string('gender');
             $table->string('phone');
             $table->text('address');
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }
