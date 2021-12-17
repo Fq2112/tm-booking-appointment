@@ -188,6 +188,16 @@ ul.one-page-menu li a.button:hover {
     background-color: transparent;
 }
 
+.has-feedback .form-control-feedback {
+    position: absolute;
+    right: 15px;
+    display: block;
+    width: 45px;
+    height: 45px;
+    line-height: 45px;
+    text-align: center;
+}
+
 .myProgress {
     position: fixed;
     margin-bottom: 0;
