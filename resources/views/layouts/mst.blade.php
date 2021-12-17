@@ -18,17 +18,21 @@
 
     <link rel="stylesheet" href="{{asset('css/dark.css')}}" type="text/css"/>
     <link rel="stylesheet" href="{{asset('css/font-icons.css')}}" type="text/css"/>
+    <link rel="stylesheet" href="{{asset('css/glyphicons.css')}}" type="text/css">
     <link rel="stylesheet" href="{{asset('css/medical-icons.css')}}" type="text/css"/>
     <link rel="stylesheet" href="{{asset('css/animate.css')}}" type="text/css"/>
     <link rel="stylesheet" href="{{asset('css/magnific-popup.css')}}" type="text/css"/>
-
+    <link rel="stylesheet" href="{{asset('css/modal.css')}}" type="text/css"/>
     <link rel="stylesheet" href="{{asset('css/fonts.css')}}" type="text/css"/>
+    <link rel="stylesheet" href="{{asset('js/swal2/dist/sweetalert2.min.css')}}" type="text/css"/>
 
     <link rel="stylesheet" href="{{asset('css/custom.css')}}" type="text/css"/>
     <link rel="stylesheet" href="{{asset('css/media-query.css')}}" type="text/css"/>
     <link rel="stylesheet" href="{{asset('css/colors.php?color=28B77A')}}" type="text/css"/>
 
     @stack('styles')
+
+    <script src='https://www.google.com/recaptcha/api.js?onload=recaptchaCallback&render=explicit' async defer></script>
 </head>
 
 <body class="stretched page-transition use-nicescroll"
@@ -139,10 +143,13 @@
 <script src="{{asset('js/checkMobileDevice.js')}}"></script>
 <!-- Nicescroll -->
 <script src="{{asset('js/nicescroll/jquery.nicescroll.js')}}"></script>
+<!-- swal2 -->
+<script src="{{asset('js/swal2/dist/sweetalert2.all.min.js')}}"></script>
 <!-- Footer Scripts -->
 <script src="{{asset('js/functions.js')}}"></script>
 
 @yield('scripts')
 @include('layouts.partials._script')
+@include('layouts.partials._alert')
 </body>
 </html>

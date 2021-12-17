@@ -2,8 +2,8 @@
     <div class="modal-dialog login animated">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" style="line-height: 2;"></h4>
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" style="line-height: 2;">Sign In</h4>
+                <button type="button" class="btn-close btn-sm" data-bs-dismiss="modal" aria-hidden="true"></button>
             </div>
             <div class="modal-body pb-0">
                 <!-- Sign in form -->
@@ -13,27 +13,25 @@
                         <div class="form loginBox">
                             @if(session('register') || session('recovered'))
                                 <div class="alert alert-success alert-dismissible">
-                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;
-                                    </button>
-                                    <h4 class="mb-1"><i class="icon-check"></i> {{__('lang.alert.success')}}</h4>
-                                    {{session('register') ? __('lang.alert.register') : __('lang.alert.recovery')}}
+                                    <button type="button" class="btn-close btn-sm" data-bs-dismiss="modal" aria-hidden="true"></button>
+                                    <h4 class="mb-1"><i class="icon-check"></i> SUCCESS!</h4>
+                                    {{session('register') ? env('APP_NAME') . " account successfully created! Please check your email to activate your account." : 'Please sign in with your new password.'}}
                                 </div>
                             @elseif(session('error') || session('inactive'))
                                 <div class="alert alert-danger alert-dismissible">
-                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;
-                                    </button>
-                                    <h4 class="mb-1"><i class="icon-times"></i> {{__('lang.alert.error')}}</h4>
-                                    {{session('error') ? __('lang.alert.login-fail') : __('lang.alert.login-inactive')}}
+                                    <button type="button" class="btn-close btn-sm" data-bs-dismiss="modal" aria-hidden="true"></button>
+                                    <h4 class="mb-1"><i class="icon-times"></i> ERROR!</h4>
+                                    {{session('error') ? 'Your email or password is incorrect.' : 'Your account is not active yet! Please activate your account first.'}}
                                 </div>
                             @endif
-                            <form method="post" accept-charset="UTF-8" class="form-horizontal nomargin"
+                            <form method="post" accept-charset="UTF-8" class="form-horizontal m-0"
                                   action="{{route('login')}}" id="form-login">
                                 @csrf
                                 <div class="row has-feedback">
                                     <div class="col-12">
                                         <input class="form-control" type="text" name="useremail" autofocus required
                                                value="{{old('email')}}"
-                                               placeholder="{{__('lang.placeholder.useremail')}}">
+                                               placeholder="Enter your email">
                                         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                                     </div>
                                 </div>
@@ -41,7 +39,7 @@
                                     <div class="col-12">
                                         <input id="log_password" type="password"
                                                class="form-control {{session('error') ? 'is-invalid' : ''}}"
-                                               placeholder="{{__('lang.placeholder.password')}}" name="password"
+                                               placeholder="Enter your password" name="password"
                                                minlength="6" required>
                                         <span class="glyphicon glyphicon-eye-open form-control-feedback"
                                               style="pointer-events: all;cursor: pointer"></span>
@@ -52,23 +50,23 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-7">
+                                    <div class="col">
                                         <div>
                                             <input id="remember" class="checkbox-style" name="remember"
                                                    type="checkbox" {{old('remember') ? 'checked' : ''}}>
                                             <label for="remember" class="checkbox-style-2-label checkbox-small"
-                                                   style="text-transform: none">{{__('lang.modal.auth.remember')}}</label>
+                                                   style="text-transform: none">Remember me</label>
                                         </div>
                                     </div>
-                                    <div class="col text-right">
-                                        <a href="javascript:openEmailModal()">{{__('lang.button.forgot')}}</a>
+                                    <div class="col text-end">
+                                        <a href="javascript:openEmailModal()">Forgot password?</a>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-12">
                                         <button type="submit"
-                                                class="button button-rounded button-xlarge nomargin btn-login">
-                                            {{__('lang.button.login')}}</button>
+                                                class="button button-rounded button-xlarge m-0 btn-login">
+                                            Sign In</button>
                                     </div>
                                 </div>
                             </form>
@@ -82,26 +80,24 @@
                         <div class="form">
                             @if ($errors->has('email'))
                                 <div class="alert alert-danger alert-dismissible">
-                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;
-                                    </button>
-                                    <h4 class="mb-1"><i class="icon-times"></i> {{__('lang.alert.error')}}</h4>
+                                    <button type="button" class="btn-close btn-sm" data-bs-dismiss="modal" aria-hidden="true"></button>
+                                    <h4 class="mb-1"><i class="icon-times"></i> ERROR!</h4>
                                     {{ $errors->first('email') }}
                                 </div>
                             @elseif($errors->has('password') || $errors->has('name'))
                                 <div class="alert alert-danger alert-dismissible">
-                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;
-                                    </button>
-                                    <h4 class="mb-1"><i class="icon-times"></i> {{__('lang.alert.error')}}</h4>
+                                    <button type="button" class="btn-close btn-sm" data-bs-dismiss="modal" aria-hidden="true"></button>
+                                    <h4 class="mb-1"><i class="icon-times"></i> ERROR!</h4>
                                     {{ $errors->has('password') ? $errors->first('password') : $errors->first('name') }}
                                 </div>
                             @endif
                             <div id="reg_errorAlert"></div>
-                            <form method="post" accept-charset="UTF-8" class="form-horizontal nomargin"
+                            <form method="post" accept-charset="UTF-8" class="form-horizontal m-0"
                                   action="{{route('register')}}" id="form-register">
                                 @csrf
                                 <div class="row has-feedback">
                                     <div class="col-12">
-                                        <input id="reg_name" type="text" placeholder="{{__('lang.placeholder.name')}}"
+                                        <input id="reg_name" type="text" placeholder="Enter your name"
                                                class="form-control" name="name" autofocus required>
                                         <span class="glyphicon glyphicon-user form-control-feedback"></span>
                                     </div>
@@ -123,7 +119,7 @@
                                 <div class="row has-feedback">
                                     <div class="col-12">
                                         <input class="form-control" type="password" name="password" minlength="6"
-                                               placeholder="{{__('lang.placeholder.password')}}" id="reg_password"
+                                               placeholder="Enter your password" id="reg_password"
                                                required>
                                         <span class="glyphicon glyphicon-eye-open form-control-feedback"
                                               style="pointer-events: all;cursor: pointer"></span>
@@ -132,20 +128,20 @@
                                 <div class="row has-feedback">
                                     <div class="col-12">
                                         <input class="form-control" type="password" minlength="6"
-                                               placeholder="{{__('lang.placeholder.re-password')}}"
+                                               placeholder="Enter your password again"
                                                id="reg_password_confirm" name="password_confirmation" required>
                                         <span class="glyphicon glyphicon-eye-open form-control-feedback"
                                               style="pointer-events: all;cursor: pointer"></span>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-12" style="font-size: 15px;text-align: justify">
+                                    <div class="col-12" style="font-size: 14px;text-align: justify">
                                         <small>
-                                            {!! __('lang.modal.auth.pp-tnc') !!}
+                                            By continuing this, you acknowledge that you accept on the
                                             <a href="https://trustmedis.com/terms-and-conditions/" target="_blank">
-                                                {{__('lang.footer.tnc')}}</a>{{__('lang.modal.auth.pp-tnc2')}}
+                                                Terms & Conditions</a> and
                                             <a href="https://trustmedis.com/privacy-policy/" target="_blank">
-                                                {{__('lang.footer.pp')}}</a>{!! __('lang.modal.auth.pp-tnc3') !!}.
+                                                Privacy Policy</a> of {{env('APP_NAME')}}.
                                         </small>
                                     </div>
                                 </div>
@@ -155,8 +151,8 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <button type="submit" disabled
-                                                class="button button-rounded button-xlarge nomargin btn-register">
-                                            {{__('lang.button.register')}}</button>
+                                                class="button button-rounded button-xlarge m-0 btn-register">
+                                            Sign Up</button>
                                     </div>
                                 </div>
                             </form>
@@ -171,16 +167,15 @@
                             @if(session('resetLink') || session('resetLink_failed'))
                                 <div
                                     class="alert alert-{{session('resetLink') ? 'success' : 'danger'}} alert-dismissible">
-                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;
-                                    </button>
+                                    <button type="button" class="btn-close btn-sm" data-bs-dismiss="modal" aria-hidden="true"></button>
                                     <h4 class="mb-1">
                                         <i class="icon-{{session('resetLink') ? 'check' : 'times'}}"></i>
-                                        {{session('resetLink') ? __('lang.alert.success') : __('lang.alert.alert')}}
+                                        {{session('resetLink') ? 'SUCCESS!' : 'ALERT!'}}
                                     </h4>
-                                    {{session('resetLink') ? __('lang.alert.reset') : __('lang.alert.email')}}
+                                    {{session('resetLink') ? 'Your reset password request has been sent to your email.' : 'The email you entered was not found.'}}
                                 </div>
                             @endif
-                            <form method="post" accept-charset="UTF-8" class="form-horizontal nomargin"
+                            <form method="post" accept-charset="UTF-8" class="form-horizontal m-0"
                                   action="{{route('password.email')}}">
                                 @csrf
 
@@ -200,8 +195,8 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <button type="submit"
-                                                class="button button-rounded button-xlarge nomargin btn-login">
-                                            {{__('lang.button.reset')}}</button>
+                                                class="button button-rounded button-xlarge m-0 btn-login">
+                                            Send Reset Link</button>
                                     </div>
                                 </div>
                             </form>
@@ -213,17 +208,16 @@
                 <div class="box">
                     @if(session('recover_failed'))
                         <div class="alert alert-danger alert-dismissible">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;
-                            </button>
-                            <h4 class="mb-1"><i class="icon-times"></i> {{__('lang.alert.error')}}</h4>
-                            {{ __('lang.alert.email') }}
+                            <button type="button" class="btn-close btn-sm" data-bs-dismiss="modal" aria-hidden="true"></button>
+                            <h4 class="mb-1"><i class="icon-times"></i> ERROR!</h4>
+                            The email you entered was not found.
                         </div>
                     @endif
                     <div class="content passwordBox" style="display:none;">
                         <div id="forg_errorAlert"></div>
                         <div class="form">
                             <form id="form-recovery" method="post" accept-charset="UTF-8"
-                                  class="form-horizontal nomargin" action="{{--{{route('password.reset',
+                                  class="form-horizontal m-0" action="{{--{{route('password.reset',
                                   ['token' => session('reset') ? session('reset')['token'] : old('token')])}}--}}">
                                 @csrf
                                 <div class="row {{ $errors->has('Email') ? ' has-danger' : '' }} has-feedback">
@@ -244,7 +238,7 @@
                                     <div class="col-12">
                                         <input id="forg_password" type="password"
                                                class="form-control {{$errors->has('password') ? 'is-invalid' : ''}}"
-                                               placeholder="{{__('lang.placeholder.new-password')}}" name="password"
+                                               placeholder="Enter your new password" name="password"
                                                minlength="6" autofocus required>
                                         <span class="glyphicon glyphicon-eye-open form-control-feedback"
                                               style="pointer-events: all;cursor: pointer"></span>
@@ -259,7 +253,7 @@
                                     class="row {{ $errors->has('password_confirmation') ? ' has-danger' : '' }} has-feedback">
                                     <div class="col-12">
                                         <input id="forg_password_confirm" class="form-control" type="password"
-                                               placeholder="{{__('lang.placeholder.re-password')}}"
+                                               placeholder="Enter your new password again"
                                                name="password_confirmation" minlength="6"
                                                onkeyup="return checkForgotPassword()" required>
                                         <span class="glyphicon glyphicon-eye-open form-control-feedback"
@@ -269,8 +263,8 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <button type="submit"
-                                                class="button button-rounded button-xlarge nomargin btn-password">
-                                            {{__('lang.button.recovery')}}</button>
+                                                class="button button-rounded button-xlarge m-0 btn-password">
+                                            Reset Password</button>
                                     </div>
                                 </div>
                             </form>
@@ -280,10 +274,10 @@
             </div>
             <div class="modal-footer">
                 <div class="forgot login-footer">
-                    <span>{!! __('lang.modal.auth.footer-create') !!}</span>
+                    <span>Looking to <a href='javascript:showRegisterForm()'>create an account</a>?</span>
                 </div>
                 <div class="forgot register-footer" style="display:none">
-                    <span>{!! __('lang.modal.auth.footer-login') !!}</span>
+                    <span>Already have an account? <a href='javascript:showLoginForm()'>Sign In</a></span>
                 </div>
             </div>
         </div>

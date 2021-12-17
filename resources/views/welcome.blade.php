@@ -12,7 +12,7 @@
                         <div class="container">
                             <div class="slider-caption slider-caption-right" style="max-width: 700px;">
                                 <div>
-                                    <h2 data-animate="flipInX">Team of Experts<span>.</span></h2>
+                                    <h2 data-animate="flipInX">Experts <span>Team</span></h2>
                                     <p class="d-none d-sm-block" data-animate="flipInX" data-delay="500">Our Team of
                                         Doctors are specialized in Various Disciplines to make sure you get the Best
                                         Treatment.</p>
@@ -25,7 +25,7 @@
                         <div class="container">
                             <div class="slider-caption">
                                 <div>
-                                    <h2 data-animate="zoomIn">Heart<span>Beat</span>.</h2>
+                                    <h2 data-animate="zoomIn">Heart<span>Beat</span></h2>
                                     <p class="d-none d-sm-block" data-animate="zoomIn" data-delay="500">Care for your
                                         Loved Ones from the Experts in the Medical &amp; Hospitality Industry.</p>
                                 </div>
