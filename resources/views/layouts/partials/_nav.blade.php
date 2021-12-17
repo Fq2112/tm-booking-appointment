@@ -25,14 +25,9 @@
             </a>
             <ul class="sub-menu-container">
                 <li class="menu-item">
-                    <a class="menu-link" href="#">
-                        <div><i class="icon-dashboard me-2"></i>Dashboard</div></a>
+                    <a class="menu-link" href="{{route('booking-list')}}">
+                        <div><i class="icon-history me-2"></i>Booking List</div></a>
                 </li>
-                <li class="menu-item">
-                    <a class="menu-link" href="#">
-                        <div><i class="icon-user-cog me-2"></i>Settings</div></a>
-                </li>
-                <li class="dropdown-divider"></li>
                 <li class="menu-item">
                     <a href="#" class="menu-link btn_signOut">
                         <div><i class="icon-sign-out-alt"></i>Sign Out</div>
