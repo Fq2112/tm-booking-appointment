@@ -18,6 +18,7 @@ class CreateSpecialistsTable extends Migration
             $table->string('name');
             $table->text('desc');
             $table->string('image')->nullable();
+            $table->string('permalink')->unique();
             $table->timestamps();
         });
     }

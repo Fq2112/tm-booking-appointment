@@ -127,6 +127,7 @@ class SpecialistSeeder extends Seeder
                 'name' => $val['name'],
                 'desc' => $val['desc'],
                 'image' => $val['image'],
+                'permalink' => preg_replace("![^a-z0-9]+!i", "-", strtolower($val['name']))
             ]);
         }
     }
