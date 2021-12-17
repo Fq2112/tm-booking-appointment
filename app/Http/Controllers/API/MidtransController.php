@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Helpers\Midtrans\SnapToken;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use Midtrans\Notification;
 
 class MidtransController extends Controller

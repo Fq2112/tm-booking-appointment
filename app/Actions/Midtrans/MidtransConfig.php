@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Helpers\Midtrans;
+namespace App\Actions\Midtrans;
 
 use Midtrans\Config;
 
