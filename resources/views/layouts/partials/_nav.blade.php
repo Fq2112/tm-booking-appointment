@@ -34,7 +34,7 @@
                 </li>
                 <li class="dropdown-divider"></li>
                 <li class="menu-item">
-                    <a href="javascript:void(0)" class="menu-link btn_signOut">
+                    <a href="#" class="menu-link btn_signOut">
                         <div><i class="icon-sign-out-alt"></i>Sign Out</div>
                     </a>
                     <form id="logout-form" action="{{route('logout')}}" method="POST" class="d-none">@csrf</form>

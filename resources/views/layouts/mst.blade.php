@@ -150,6 +150,5 @@
 
 @yield('scripts')
 @include('layouts.partials._script')
-@include('layouts.partials._alert')
 </body>
 </html>
