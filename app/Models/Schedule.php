@@ -9,6 +9,10 @@ class Schedule extends Model
 {
     use HasFactory;
 
+    protected $table = 'schedules';
+
+    protected $guarded = ['id'];
+
     public function getSpecialist()
     {
         return $this->belongsTo(Specialist::class, 'specialist_id');

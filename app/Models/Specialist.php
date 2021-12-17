@@ -9,6 +9,10 @@ class Specialist extends Model
 {
     use HasFactory;
 
+    protected $table = 'specialists';
+
+    protected $guarded = ['id'];
+
     public function getSchedule()
     {
         return $this->hasMany(Schedule::class, 'specialist_id');

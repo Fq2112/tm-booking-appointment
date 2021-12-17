@@ -9,6 +9,10 @@ class Day extends Model
 {
     use HasFactory;
 
+    protected $table = 'days';
+
+    protected $guarded = ['id'];
+
     public function getSchedule()
     {
         return $this->hasMany(Schedule::class, 'day_id');

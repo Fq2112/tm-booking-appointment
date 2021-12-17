@@ -9,6 +9,10 @@ class DoctorSchedule extends Model
 {
     use HasFactory;
 
+    protected $table = 'doctor_schedules';
+
+    protected $guarded = ['id'];
+
     public function getDoctor()
     {
         return $this->belongsTo(Doctor::class,'doctor_id');

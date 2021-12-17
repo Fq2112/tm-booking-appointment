@@ -9,6 +9,10 @@ class Product extends Model
 {
     use HasFactory;
 
+    protected $table = 'products';
+
+    protected $guarded = ['id'];
+
     public function getSpecialist()
     {
         return $this->belongsTo(Specialist::class, 'specialist_id');
