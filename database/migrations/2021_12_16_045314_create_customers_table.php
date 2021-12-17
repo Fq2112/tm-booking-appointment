@@ -18,10 +18,10 @@ class CreateCustomersTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')
                 ->onUpdate('cascade')->onDelete('cascade');
-            $table->date('dob');
-            $table->string('gender');
-            $table->string('phone');
-            $table->text('address');
+            $table->date('dob')->nullable();
+            $table->string('gender')->nullable();
+            $table->string('phone')->nullable();
+            $table->text('address')->nullable();
             $table->string('image')->nullable();
             $table->timestamps();
         });

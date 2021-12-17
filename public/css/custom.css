@@ -198,6 +198,10 @@ ul.one-page-menu li a.button:hover {
     text-align: center;
 }
 
+.swal2-confirm {
+    background-color: var(--main-scheme) !important;
+}
+
 .myProgress {
     position: fixed;
     margin-bottom: 0;
