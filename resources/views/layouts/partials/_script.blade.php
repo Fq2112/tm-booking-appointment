@@ -1,6 +1,9 @@
 <script>
     $(function () {
         window.mobilecheck() ? $("body").removeClass('use-nicescroll') : $("body").css("overflow", "hidden");
+
+        $('[data-toggle="tooltip"]').tooltip();
+        $('[data-toggle="popover"]').popover();
     });
 
     $(".btn_signOut").on('click',function () {

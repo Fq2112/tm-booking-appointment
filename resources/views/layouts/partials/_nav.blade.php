@@ -1,5 +1,6 @@
 <ul class="one-page-menu menu-container" data-easing="easeInOutExpo" data-speed="700"
     data-offset="0">
+    @if(request()->is('/'))
     <li class="menu-item current"><a class="menu-link" href="#" data-href="#wrapper">
             <div>Home</div>
         </a></li>
@@ -9,6 +10,7 @@
     <li class="menu-item"><a class="menu-link" href="#" data-href="#section-doctors">
             <div>Doctors</div>
         </a></li>
+    @endif
     <li class="menu-item">
         <a class="button button-small button-circle button-blue"
            href="{{route('find-doctor')}}"><div><i class="icon-calendar-alt"></i>Booking</div>
@@ -18,8 +20,7 @@
         <li class="menu-item sub-menu">
             <a class="button button-small button-circle button-green text-end" href="#">
                 <div>
-                    <img src="{{Auth::user()->getCustomer->image != "" ? asset('storage/users/image/'.Auth::user()->getCustomer->image) : asset('images/avatar/'.rand(1,5).'.png')}}"
-                         alt="Ava" class="img-circle img-fluid me-1" width="22">
+                    <img src="{{asset('images/avatar/'.rand(1,5).'.png')}}" alt="Ava" class="img-circle img-fluid me-1" width="22">
                     {{\Illuminate\Support\Str::words(Auth::user()->name,1,'')}}<i class="icon-angle-down1"></i>
                 </div>
             </a>
