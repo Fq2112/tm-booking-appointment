@@ -1,66 +1,81 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# Project 1: Booking Appointment
+![TrustMedis](https://github.com/Fq2112/tm-booking-appointment/blob/main/images/logotype.png "Logo TrustMedis")
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+#### This is an application that allow users to book an appointment with doctor specialist.
 
-## About Laravel
+### Built With
+* [Laravel 8](https://python.org/)
+* [Fortify Auth](https://github.com/laravel/fortify)
+* [PostgreSQL](https://postgresql.org/)
+* [Bootstrap 5](https://getbootstrap.com)
+* [jQuery](https://jquery.com)
+* [OwlCarousel2](https://owlcarousel2.github.io/OwlCarousel2/)
+* [SwiperJS](https://swiperjs.com/)
+* [Date Range Picker](https://www.daterangepicker.com/)
+* [SweetAlert2](https://sweetalert2.github.io/)
+* [NiceScroll](https://nicescroll.areaaperta.com/)
+* [Google reCAPTCHA](https://google.com/recaptcha/about/)
+* [Midtrans](https://midtrans.com)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Getting Started
+Follow this step guide to prepare the requirement system before using the apps
+1. Download and install [Composer](https://getcomposer.org/)
+2. Clone this repo
+    ```sh
+   git clone https://github.com/Fq2112/tm-booking-appointment.git
+   ```
+3. Update the composer
+    ```sh
+   composer update
+   ```
+4. Copy ``.env.example`` file and rename it to ``.env`` 
+5. Adjust ``.env`` file based on your device environment
+6. Generate new key
+    ```sh
+   php artisan key:generate
+    ```
+7. Turn on your postgreSql server and run this command
+    ```sh
+   php artisan migrate:fresh --seed
+   ```
+8. Run the apps
+    ```sh
+   php artisan serve
+   ```
+9. Open it on your browser
+    ```sh
+   http://localhost:8000
+   ```
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Overview
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### A. Landing Page
+There are 4 sections on this page
+1. ![Landing 1](https://github.com/Fq2112/tm-booking-appointment/blob/main/images/testing/landing_1.png "Landing 1")
+2. ![Landing 2](https://github.com/Fq2112/tm-booking-appointment/blob/main/images/testing/landing_2.png "Landing 2")
+2. ![Landing 3](https://github.com/Fq2112/tm-booking-appointment/blob/main/images/testing/landing_3.png "Landing 3")
+2. ![Landing 4](https://github.com/Fq2112/tm-booking-appointment/blob/main/images/testing/landing_4.png "Landing 4")
 
-## Learning Laravel
+### B. Authentication
+Only 3 auth features on this app, i.e: Sign Up, Sign In, Sign Out
+1. ![Auth 1](https://github.com/Fq2112/tm-booking-appointment/blob/main/images/testing/signup_modal.png "Auth 1")
+2. ![Auth 2](https://github.com/Fq2112/tm-booking-appointment/blob/main/images/testing/signup_succeed.png "Auth 2")
+3. ![Auth 3](https://github.com/Fq2112/tm-booking-appointment/blob/main/images/testing/signin_modal.png "Auth 3")
+4. ![Auth 4](https://github.com/Fq2112/tm-booking-appointment/blob/main/images/testing/signin_succeed.png "Auth 4")
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### C. Booking Form
+Midtrans is not working for localhost anymore, even in sandbox/testing mode
+1. ![Book 1](https://github.com/Fq2112/tm-booking-appointment/blob/main/images/testing/booking_1.png "Book 1")
+2. ![Book 2](https://github.com/Fq2112/tm-booking-appointment/blob/main/images/testing/booking_2.png "Book 2")
+3. ![Book 3](https://github.com/Fq2112/tm-booking-appointment/blob/main/images/testing/booking_3.png "Book 3")
+4. ![Book 4](https://github.com/Fq2112/tm-booking-appointment/blob/main/images/testing/booking_4.png "Book 4")
+5. ![Book 5](https://github.com/Fq2112/tm-booking-appointment/blob/main/images/testing/booking_5.png "Book 5")
+6. ![Book 6](https://github.com/Fq2112/tm-booking-appointment/blob/main/images/testing/booking_6.png "Book 6")
+7. ![Book 7](https://github.com/Fq2112/tm-booking-appointment/blob/main/images/testing/booking_7.png "Book 7")
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[CMS Max](https://www.cmsmax.com/)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
-- **[Romega Software](https://romegasoftware.com)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### D. Booking History
+1. ![List 1](https://github.com/Fq2112/tm-booking-appointment/blob/main/images/testing/history_1.png "List 1")
+2. ![List 2](https://github.com/Fq2112/tm-booking-appointment/blob/main/images/testing/history_2.png "List 2")
+3. ![List 3](https://github.com/Fq2112/tm-booking-appointment/blob/main/images/testing/history_3.png "List 3")
+4. ![List 4](https://github.com/Fq2112/tm-booking-appointment/blob/main/images/testing/history_4.png "List 4")
+5. ![List 5](https://github.com/Fq2112/tm-booking-appointment/blob/main/images/testing/history_5.png "List 5")
