@@ -748,6 +748,7 @@
             $("#heading-schedule").parent().show();
 
             $(".show-total").text(number_format(price,2,',','.'));
+            $("input[name='total_price']").val(price);
         });
 
         function saveSchedule() {
