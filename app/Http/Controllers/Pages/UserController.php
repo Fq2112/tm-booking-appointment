@@ -9,11 +9,12 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-    public function bookingList()
+    public function bookingList(Request $request)
     {
         $user = Auth::user();
-        $orders = Order::where('customer_id', $user->id)->orderByDesc('id')->get();
+        $cust = $user->getCustomer;
+        $orders = Order::where('customer_id', $cust->id)->orderBy('status')->get();
 
-        return view('booking-list', compact('user','orders'));
+        return view('booking-list', compact('user','cust','orders'));
     }
 }
