@@ -28,6 +28,7 @@ class CreateOrdersTable extends Migration
             $table->unsignedBigInteger('product_id');
             $table->foreign('product_id')->references('id')->on('products')
                 ->onUpdate('cascade')->onDelete('cascade');
+            $table->date('date');
             $table->string('total_price');
             $table->enum('status', ['1', '2', '3'])->comment('1=unpaid, 2=paid, 3=expired');
             $table->string('snap_token')->nullable();
