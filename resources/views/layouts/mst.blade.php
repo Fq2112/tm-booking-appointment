@@ -24,7 +24,11 @@
     <link rel="stylesheet" href="{{asset('css/magnific-popup.css')}}" type="text/css"/>
     <link rel="stylesheet" href="{{asset('css/modal.css')}}" type="text/css"/>
     <link rel="stylesheet" href="{{asset('css/fonts.css')}}" type="text/css"/>
+
     <link rel="stylesheet" href="{{asset('js/swal2/dist/sweetalert2.min.css')}}" type="text/css"/>
+    <link rel="stylesheet" href="{{asset('css/datetimerangepicker/datepicker.css')}}" type="text/css"/>
+    <link rel="stylesheet" href="{{asset('css/datetimerangepicker/timepicker.css')}}" type="text/css"/>
+    <link rel="stylesheet" href="{{asset('css/datetimerangepicker/daterangepicker.css')}}" type="text/css"/>
 
     <link rel="stylesheet" href="{{asset('css/custom.css')}}" type="text/css"/>
     <link rel="stylesheet" href="{{asset('css/media-query.css')}}" type="text/css"/>
@@ -137,8 +141,13 @@
 <!-- Bootstrap Typeaheadjs Plugin -->
 <script src="{{asset('js/typehead.js')}}"></script>
 <script src="{{asset('js/underscore-min.js')}}"></script>
+<!-- Datepicker -->
+<script src="{{asset('js/datetimerangepicker/moment.js')}}"></script>
+<script src="{{asset('js/datetimerangepicker/timepicker.js')}}"></script>
+<script src="{{asset('js/datetimerangepicker/datepicker.js')}}"></script>
+<script src="{{asset('js/datetimerangepicker/daterangepicker.js')}}"></script>
 <!-- toggle password -->
-<script src="{{asset('js/hideShowPassword.min.js')}}"></script
+<script src="{{asset('js/hideShowPassword.min.js')}}"></script>
 <!-- check-mobile -->
 <script src="{{asset('js/checkMobileDevice.js')}}"></script>
 <!-- Nicescroll -->
@@ -148,7 +157,7 @@
 <!-- Footer Scripts -->
 <script src="{{asset('js/functions.js')}}"></script>
 
-@yield('scripts')
+@stack('scripts')
 @include('layouts.partials._script')
 </body>
 </html>

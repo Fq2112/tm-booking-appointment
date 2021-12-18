@@ -143,7 +143,7 @@
                                 <div class="flip-card-back bg-main-scheme no-after br-20">
                                     <div class="flip-card-inner">
                                         <p class="mb-2 text-white">{{\Illuminate\Support\Str::words($spc->desc,10,'...')}}</p>
-                                        <a href="{{route('find-doctor',['permalink' => $spc->permalink])}}"
+                                        <a href="{{route('booking-form',['q' => $spc->permalink])}}"
                                            class="btn btn-outline-light mt-2 fw-bold br-20">
                                             <i class="icon-user-md me-2"></i>FIND DOCTOR</a>
                                     </div>
@@ -162,7 +162,7 @@
                 <div id="oc-team" class="owl-carousel team-carousel carousel-widget" data-margin="30" data-nav="true"
                      data-pagi="false" data-items-xs="1" data-items-sm="2" data-items-lg="3" data-items-xl="4">
                     @foreach($doctors as $doc)
-                        <a href="{{route('booking-doctor',['permalink' => $doc->getSpecialist->permalink,'id' => encrypt($doc->id)])}}">
+                        <a href="{{route('booking-form',['q' => $doc->getSpecialist->permalink,'id' => encrypt($doc->id)])}}">
                             <div class="team">
                                 <div class="team-image">
                                     <img src="{{!is_null($doc->image) ? asset('images/doctors/'.$doc->image) : asset('images/avatar/'.rand(1,5).'.png')}}"

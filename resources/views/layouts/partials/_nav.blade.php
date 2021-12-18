@@ -13,7 +13,7 @@
     @endif
     <li class="menu-item">
         <a class="button button-small button-circle button-blue"
-           href="{{route('find-doctor')}}"><div><i class="icon-calendar-alt"></i>Booking</div>
+           href="{{route('booking-form')}}"><div><i class="icon-calendar-alt"></i>Booking</div>
         </a>
     </li>
     @auth

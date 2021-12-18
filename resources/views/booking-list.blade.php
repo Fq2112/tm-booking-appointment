@@ -306,7 +306,7 @@
                                                                                     <ul class="list-group list-group-flush">
                                                                                         <li class="list-group-item d-flex justify-content-between align-items-center border-0">
                                                                                             Quantity
-                                                                                            <span>1 pcs</span>
+                                                                                            <span>1 item</span>
                                                                                         </li>
                                                                                         <li class="list-group-item d-flex justify-content-between align-items-center border-0">
                                                                                             Price/pcs
@@ -447,7 +447,7 @@
                 $(this).siblings('.panel-heading').find('a').removeClass('active font-weight-bold');
                 $(this).siblings('.panel-heading').find('b').toggle(300);
 
-                $('html,body').animate({scrollTop: $("#form-loadOrder").offset().top}, 0);
+                $('html,body').animate({scrollTop: $("#acc-all").offset().top}, 0);
             });
 
             $(".panel-body .divider:last-child").remove();
