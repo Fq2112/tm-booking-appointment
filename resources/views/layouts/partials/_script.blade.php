@@ -4,8 +4,6 @@
 
         $('[data-toggle="tooltip"]').tooltip();
         $('[data-toggle="popover"]').popover();
-
-        $('.datepicker').datepicker({format: "yyyy-mm-dd", autoclose: true, todayHighlight: true, todayBtn: true});
     });
 
     $(".btn_signOut").on('click',function () {

@@ -10,6 +10,7 @@ Route::group(['prefix' => '/', 'namespace' => 'Pages'], function () {
 
     Route::group(['prefix' => 'booking'], function () {
         Route::get('{q?}', [MainController::class, 'bookingForm'])->name('booking-form');
+        Route::get('specialist/data', [MainController::class, 'bookingData'])->name('booking-data');
     });
 
     Route::get('booking-list', [UserController::class, 'bookingList'])

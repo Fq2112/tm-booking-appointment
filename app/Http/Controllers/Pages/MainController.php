@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Pages;
 use App\Http\Controllers\Controller;
 use App\Models\Customer;
 use App\Models\Doctor;
+use App\Models\Product;
 use App\Models\Specialist;
+use App\Models\Treatment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -40,5 +42,20 @@ class MainController extends Controller
         }
 
         return view('booking-form', compact('specialists','find_spc','find_doc','user','find_cust'));
+    }
+
+    public function bookingData(Request $request)
+    {
+        if($request->has('spc')) {
+            return Doctor::where('specialist_id', $request->spc)->get();
+        } else {
+            $product = Product::where('specialist_id', $request->doc)->get();
+
+            foreach ($product as $prod) {
+                $treatment = $prod->getTreatment;
+            }
+
+            return $product;
+        }
     }
 }

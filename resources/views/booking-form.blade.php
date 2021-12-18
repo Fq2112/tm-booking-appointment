@@ -1,6 +1,7 @@
 @extends('layouts.mst')
 @section('title', 'Booking Appointment')
 @push('styles')
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <style>
         form .postcontent {
             width: 70%;
@@ -333,12 +334,17 @@
                                                      role="tabpanel" aria-labelledby="heading-specialist"
                                                      aria-expanded="false" style="height: 0;" data-parent="#accordion">
                                                     <div class="panel-body">
-                                                        {{--TODO SELECT2 SPECIALIST--}}
+                                                        <select name="specialist_id" id="specialist_id" class="use-select2">
+                                                            <option value="" selected disabled>-- CHOOSE SPECIALIST --</option>
+                                                            @foreach($specialists as $spc)
+                                                                <option value="{{$spc->id}}" data-image="{{asset('images/specialists/'.$spc->image)}}">{{$spc->name}}</option>
+                                                            @endforeach
+                                                        </select>
                                                     </div>
                                                 </div>
                                             </div>
 
-                                            <div class="panel panel-default d-none">
+                                            <div class="panel panel-default" style="display: none">
                                                 <div class="panel-heading" role="tab" id="heading-doctor">
                                                     <h4 class="panel-title">
                                                         <a role="button" data-bs-toggle="collapse"
@@ -352,12 +358,14 @@
                                                      role="tabpanel" aria-labelledby="heading-doctor"
                                                      aria-expanded="false" style="height: 0;" data-parent="#accordion">
                                                     <div class="panel-body">
-                                                        {{--TODO SELECT2 DOCTORS--}}
+                                                        <select name="doctor_id" id="doctor_id" class="use-select2">
+                                                            <option value="" selected disabled>-- CHOOSE DOCTOR --</option>
+                                                        </select>
                                                     </div>
                                                 </div>
                                             </div>
 
-                                            <div class="panel panel-default d-none">
+                                            <div class="panel panel-default" style="display: none">
                                                 <div class="panel-heading" role="tab" id="heading-product">
                                                     <h4 class="panel-title">
                                                         <a role="button" data-bs-toggle="collapse"
@@ -371,12 +379,14 @@
                                                      role="tabpanel" aria-labelledby="heading-product"
                                                      aria-expanded="false" style="height: 0;" data-parent="#accordion">
                                                     <div class="panel-body">
-                                                        {{--TODO SELECT2 PRODUCTS--}}
+                                                        <select name="product_id" id="product_id" class="use-select2">
+                                                            <option value="" selected disabled>-- CHOOSE PRODUCT --</option>
+                                                        </select>
                                                     </div>
                                                 </div>
                                             </div>
 
-                                            <div class="panel panel-default d-none">
+                                            <div class="panel panel-default" style="display: none">
                                                 <div class="panel-heading" role="tab" id="heading-schedule">
                                                     <h4 class="panel-title">
                                                         <a role="button" data-bs-toggle="collapse"
@@ -390,7 +400,27 @@
                                                      role="tabpanel" aria-labelledby="heading-schedule"
                                                      aria-expanded="false" style="height: 0;" data-parent="#accordion">
                                                     <div class="panel-body">
-                                                        {{--TODO SCHEDULE--}}
+                                                        <div class="row form-group">
+                                                            <div class="col">
+                                                                <label for="book_date">Date <span class="color">*</span></label>
+                                                                <input type="text" id="book_date" required
+                                                                       class="form-control"
+                                                                       placeholder="yyyy-mm-dd" maxlength="10">
+                                                            </div>
+                                                            <div class="col">
+                                                                <label for="book_time">Time <span class="color">*</span></label>
+                                                                <input type="text" id="book_time" required
+                                                                       class="form-control timepicker"
+                                                                       placeholder="hh:mm">
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col d-grid">
+                                                                <button id="btn_bio" type="button" onclick="saveSchedule()"
+                                                                        class="btn btn-primary text-uppercase border-0">
+                                                                    SAVE CHANGES</button>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -579,7 +609,7 @@
                                         </div>
                                     </div>
                                     <div class="card-footer d-grid p-0">
-                                        <button id="btn_pay" type="button" style="text-align: left" disabled
+                                        <button id="btn_pay" type="button" style="text-align: left" onclick="checkout()"
                                                 class="btn btn-primary text-uppercase border-0">
                                             CHECKOUT <span style="float: right"><i class="icon-chevron-right"></i></span>
                                         </button>
@@ -598,8 +628,13 @@
     </section>
 @endsection
 @push('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{env('MIDTRANS_SERVER_KEY')}}"></script>
     <script>
-        var collapse = $('.panel-collapse');
+        var collapse = $('.panel-collapse'),
+            specialist_id = $("#specialist_id"),
+            doctor_id = $("#doctor_id"),
+            product_id = $("#product_id");
 
         $(function () {
             collapse.on('show.bs.collapse', function () {
@@ -619,7 +654,113 @@
             });
 
             $(".panel-body .divider:last-child").remove();
+
+            $('#book_dob').datepicker({format: "yyyy-mm-dd", autoclose: true, todayHighlight: true, todayBtn: true});
+            $('#book_date').datepicker({format: "yyyy-mm-dd", autoclose: true, todayHighlight: true, todayBtn: true,startDate: "today"});
+            $("#book_time").daterangepicker({
+                timePicker: true,
+                timePicker24Hour: true,
+                timePickerIncrement: 1,
+                timePickerSeconds: true,
+                locale: {format: 'HH:mm'}
+            }).on('show.daterangepicker', function (ev, picker) {
+                picker.container.find(".calendar-table").hide();
+            });
         });
+
+        specialist_id.select2({
+            templateResult: formatState,
+            width: '100%',
+            placeholder: "-- CHOOSE SPECIALIST --",
+        });
+
+        function formatState (opt) {
+            if (!opt.id) {
+                return opt.text;
+            }
+
+            var optimage = $(opt.element).attr('data-image');
+            if(!optimage){
+                return opt.text;
+            } else {
+                var $opt = $(
+                    '<span><img src="' + optimage + '" width="64"> ' + opt.text + '</span>'
+                );
+                return $opt;
+            }
+        }
+
+        specialist_id.on('select2:select', function (e) {
+            var data = e.params.data;
+
+            $('#collapse-specialist').collapse('toggle');
+            $("#heading-specialist").find('b').text(data.text);
+
+            $("#heading-doctor").parent().show();
+            doctor_id.empty().trigger('change');
+            doctor_id.append($('<option value="" selected disabled>-- CHOOSE DOCTOR --</option>'));
+            doctor_id.select2({
+                templateResult: formatState,
+                width: '100%',
+                placeholder: "-- CHOOSE DOCTOR --",
+            });
+
+            $.get("{{route('booking-data')}}?spc="+specialist_id.val(), function(data) {
+                $.each(data, function (i,val) {
+                    doctor_id.append($("<option></option>")
+                        .attr("value", val.id)
+                        .attr("data-spc", val.specialist_id)
+                        .attr("data-image", "{{asset('images/doctors')}}/" +val.image)
+                        .text(val.name));
+                });
+            });
+        });
+
+        doctor_id.on('select2:select', function (e) {
+            var data = e.params.data;
+
+            $('#collapse-doctor').collapse('toggle');
+            $("#heading-doctor").find('b').text(data.text);
+
+            $("#heading-product").parent().show();
+            product_id.empty().trigger('change');
+            product_id.append($('<option value="" selected disabled>-- CHOOSE PRODUCT --</option>'));
+            product_id.select2({
+                width: '100%',
+                placeholder: "-- CHOOSE PRODUCT --",
+            });
+            $.get("{{route('booking-data')}}?doc="+specialist_id.val(), function(data) {
+                $.each(data, function (i,val) {
+                    product_id.append($("<option></option>")
+                        .attr("value", val.id)
+                        .attr("data-price", val.price)
+                        .text(val.name));
+                });
+            });
+        });
+
+        product_id.on('select2:select', function (e) {
+            var data = e.params.data, price = $('#product_id option:selected').attr('data-price');
+
+            $('#collapse-product').collapse('toggle');
+            $("#heading-product").find('b').text(data.text);
+
+            $("#heading-schedule").parent().show();
+
+            $(".show-total").text(number_format(price,2,',','.'));
+        });
+
+        function saveSchedule() {
+            var date = $("#book_date"),
+                time = $("#book_time");
+
+            if(!date.val() ||!time.val()) {
+                Swal.fire('ATTENTION!', 'Please select the schedule!', 'error');
+            } else {
+                $('#collapse-schedule').collapse('toggle');
+                $("#heading-schedule").find('b').text(date.val() + ' | ' + time.val());
+            }
+        }
 
         function saveBio() {
             var name = $("#book_name"),
@@ -654,6 +795,53 @@
                         $("#heading-account").find('b').text(email.val());
                     }
                 }
+            }
+        }
+
+        function checkout() {
+            var name = $("#book_name"),
+                gender = $("input[name='book_gender']"),
+                phone = $("#book_phone"),
+                address = $("#book_address"),
+                dob = $("#book_dob"),
+                email = $("#book_email"),
+                password = $("#book_password"),
+                confirm = $("#book_password_confirm"),
+                date = $("#book_date"),
+                time = $("#book_time"),
+                spc = $("#specialist_id"),
+                doc = $("#doctor_id"),
+                prod = $("#product_id"),
+                btn_pay = $("#btn_pay");
+
+            if(!name.val() ||!gender.val() ||!phone.val() ||!address.val() ||!dob.val()||!email.val()||!password.val()||!confirm.val()||!date.val()||!time.val()||!spc.val()||!doc.val()||!prod.val()) {
+                Swal.fire('ATTENTION!','Please complete all the following inputs for your order first.','warning');
+            } else {
+                clearTimeout(this.delay);
+                this.delay = setTimeout(function () {
+                    $.ajax({
+                        url: '{{route('get.midtrans.snap')}}',
+                        type: "GET",
+                        data: $("#form-booking").serialize(),
+                        success: function (data) {
+                            snap.pay(data, {
+                                language: '{{app()->getLocale()}}',
+                                onSuccess: function (result) {
+                                    responseMidtrans('finish', result);
+                                },
+                                onPending: function (result) {
+                                    responseMidtrans('unfinish', result);
+                                },
+                                onError: function (result) {
+                                    Swal.fire('ERROR!', result.status_message, 'error');
+                                }
+                            });
+                        },
+                        error: function () {
+                            Swal.fire('ERROR!', 'Something went wrong! Please, refresh your browser.', 'error');
+                        }
+                    });
+                }.bind(this), 800);
             }
         }
     </script>
